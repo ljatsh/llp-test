@@ -6,6 +6,7 @@ global _main
 section .data
 codes: db '0123456789ABCDEF'
 newline: db 0xA
+prefix: db '0x'
 
 section .text
 
@@ -17,11 +18,18 @@ print_newline:
   syscall
   ret
 
+print_prefix:
+  mov rax,       0x02000004             ; sys_write
+  mov rdi,       1
+  mov rsi,       prefix
+  mov rdx,       2
+  syscall
+  ret
+
 ; print rdi content is hex format
 print_hex:
   mov rax,      rdi
   mov rdi,      1
-  mov rdx,      1
   mov rcx,      64
 iterate:
   push rax                                ; save the initial rax value
@@ -33,6 +41,7 @@ iterate:
   add rsi,      rax
 
   mov rax,      0x02000004                ; sys_write
+  mov rdx,      1                         ; rdx also breaks
   push rcx                                ; system call will break rcx
   syscall
   pop rcx
@@ -52,7 +61,8 @@ _main:
   ;mov rsi,       [codes + rax]           ; contents at (codes + rax)
   ;lea rsi,       [codes + rax]           ; codes + rax = mov rsi, codes; add rsi, rax
 
-  mov rdi,       0x3122334455667788
+  call print_prefix
+  mov rdi,       0x1122334455667788
   call print_hex
   call print_newline
 
