@@ -55,4 +55,5 @@ dkms.conf
 lesson1/hello
 lesson2/test
 lesson3/string_len
+lesson4/string_len
 .DS_Store

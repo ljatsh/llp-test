@@ -12,7 +12,7 @@ _main:
   mov rdx,     rbx
 
 _next_char:
-  cmp byte[rdx], 1
+  cmp byte[rdx], 0
   jz  _finish
   inc rdx
   jmp _next_char
