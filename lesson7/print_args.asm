@@ -5,7 +5,7 @@
 
 global _main
 
-; TODO
+; 直接从rsp解析，还没有找到官方说明
 ;(gdb) set args 1 2 3 4 5 6 7 8 9 10
 ;(gdb) x /20dg $rsp
 ;0x7ffeefbff658:	140735090225893	140735090225893
@@ -25,21 +25,36 @@ global _main
 ;(gdb) x /s 140732920756382
 ;0x7ffeefbff89e:	"2"
 
+; 从rdi, rsi解析 https://cs.lmu.edu/~ray/notes/nasmtutorial/
+; (gdb) set args hello world
+; (gdb) p $rdi
+; $2 = 3
+; (gdb) x /a $rsi
+; 0x7ffeefbff6c0: 0x7ffeefbff868
+; (gdb) p /s 0x7ffeefbff868
+; 0x7ffeefbff868: "/Users/longjun/Documents/GitHub/llp-test/lesson7/print_args"
+; (gdb) x /a $rsi + 8
+; 0x7ffeefbff6c8: 0x7ffeefbff8a4
+; (gdb) x /s 0x7ffeefbff8a4
+; 0x7ffeefbff8a4: "hello"
+
 section .text
 _main:
-  mov   rbx,        rsp
-  add   rbx,        24
-  mov   rcx,        [rbx]
+  push  rdi
+  push  rsi
 
 _main.loop:
-  cmp   rcx,        0
+  cmp   rdi,        0
   jz    _quit
-  add   rbx,        8
-  mov   rax,        [rbx]
+  mov   rax,        [rsi]
+  add   rsi,        8
   call printLF
-  dec   rcx
+  dec   rdi
   jmp _main.loop
 
 _quit:
+  pop   rdi
+  pop   rsi
+
   mov rax,          0
   call quit

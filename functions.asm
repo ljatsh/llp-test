@@ -1,4 +1,9 @@
 
+section .data
+nl: db 0xA, 0x0
+
+section .text
+
 ; get the length of a string
 ; input rax
 ; output rax
@@ -41,7 +46,7 @@ print:
 
 printLF:
   call print
-  mov rax,              0xA
+  mov rax,              nl
   call print
   ret
 
