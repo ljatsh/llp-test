@@ -39,6 +39,12 @@ print:
   pop rdi
   ret
 
+printLF:
+  call print
+  mov rax,              0xA
+  call print
+  ret
+
 ; input rdi
 ; changed rdi
 quit:
