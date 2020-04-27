@@ -58,3 +58,7 @@ lesson3/string_len
 lesson4/string_len
 lesson5/string_len
 .DS_Store
+
+#
+obj
+out

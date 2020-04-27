@@ -2,12 +2,13 @@
 Table of Contents
 =================
 
-* [NASM]
+* [NASM](#nasm)
   * [DB and Friends](#db-and-friends)
   * [Instructions](#instructions)
 * [System Call](#system-call)
 * [Registers](#registers)
 * [Reference](#reference)
+* [TODO](#todo)
 
 NASM
 ----
@@ -45,7 +46,13 @@ register meaning:
 Reference
 ---------
 
+* [GNU Make](https://www.gnu.org/software/make/manual/html_node/index.html)
 * [nasm](https://www.nasm.us)
 * [nasm tutorial1](https://cs.lmu.edu/~ray/notes/nasmtutorial/)
 * [nasm tutorial2](https://asmtutor.com)
 * http://sevanspowell.net/posts/learning-nasm-on-macos.html
+
+TODO
+----
+
+* System Call
