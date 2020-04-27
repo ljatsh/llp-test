@@ -1,20 +1,32 @@
 
 OBJDIR := obj
 OUTDIR := out
+SAMPLES := $(wildcard sample*.asm)
+OUTS = $(addprefix $(OUTDIR)/, $(basename $(SAMPLES)))
+OBJS = $(addprefix $(OBJDIR)/, $(patsubst %.asm, %.o, $(SAMPLES)))
 
-all: $(OUTDIR)/sample01
+all: $(OUTS)
 
 test:
-	echo hello
+	echo hello, @=$@
+	echo $(SAMPLES)
+	echo $(OUTS)
+	echo $(OBJS)
 
 $(OUTDIR)/sample01 : $(OBJDIR)/sample01.o
-	ld -o $(OUTDIR)/sample01 -lSystem $(OBJDIR)/sample01.o
+	ld -o $@ -lSystem $^
 
 $(OBJDIR)/sample01.o : sample01.asm
-	nasm -fmacho64 sample01.asm -o $(OBJDIR)/sample01.o
+	nasm -fmacho64 $^ -o $@
 
-$(OBJDIR)/sample01.o : | $(OBJDIR)
-$(OUTDIR)/sample01: | $(OUTDIR)
+$(OUTDIR)/sample02 : $(OBJDIR)/sample02.o
+	ld -o $@ -lSystem $^
+
+$(OBJDIR)/sample02.o : sample02.asm
+	nasm -fmacho64 $^ -o $@
+
+$(OBJS) : | $(OBJDIR)
+$(OUTS): | $(OUTDIR)
 
 $(OUTDIR):
 	mkdir $(OUTDIR)
@@ -25,4 +37,4 @@ $(OBJDIR):
 clean:
 	rm -fr $(OBJDIR) $(OUTDIR)
 
-.PHONY: clean
+.PHONY: all clean
