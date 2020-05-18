@@ -1,6 +1,6 @@
 
 ; Content
-; 1) Hello, World!
+; 1) syscall
 
 global _main
 
@@ -12,7 +12,7 @@ _main:
   mov       rdx, 14                     ; length
   syscall                               ; invoke
 
-  mov       rax, 0x02000001             ; id of exit 
+  mov       rax, 0x02000001             ; id of exit
   xor       rdi, rdi                    ; exit code 0 (TODO: vs move 0)
   syscall
 
