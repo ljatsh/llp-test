@@ -62,7 +62,7 @@ CPP = $(CC) -E
 # default
 LINK.cc = $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(LDFLAGS) $(TARGET_ARCH)
 # makefile (from `makefile', line 4)
-SAMPLES := sample01.asm sample02.asm
+SAMPLES := sample01.asm sample02.asm 
 # environment
 PATH = /Users/longjun/Documents/tools/bsontools:/Applications/Cocos/Cocos2d-x/cocos2d-x-3.10/templates:/Applications/Cocos/Cocos2d-x:/Applications/Cocos/Cocos2d-x/cocos2d-x-3.10/tools/cocos2d-console/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/VMware Fusion.app/Contents/Public:/usr/local/share/dotnet:/opt/X11/bin:~/.dotnet/tools:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/longjun/Downloads/android-sdk-macosx/tools:/Users/longjun/Downloads/android-sdk-macosx/platform-tools:/Users/longjun/Documents/tools/nasm
 # default
